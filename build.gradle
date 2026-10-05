@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'maven-publish'
     id 'idea'
-    id 'net.neoforged.moddev' version '2.0.141'
+    id 'net.neoforged.moddev' version '2.0.148'
 }
 
 group = mod_group_id
@@ -88,13 +88,13 @@ repositories {
         }
     }
     maven {
-        url "https://cursemaven.com"
+        url = "https://cursemaven.com"
         content {
             includeGroup "curse.maven"
         }
     }
     maven {
-        url "https://maven.latvian.dev/releases"
+        url = "https://maven.latvian.dev/releases"
         content {
             includeGroup "dev.latvian.mods"
             includeGroup "dev.latvian.apps"
@@ -107,7 +107,7 @@ repositories {
         }
     }
     maven {
-        url 'https://jitpack.io'
+        url = "https://jitpack.io"
         content {
             includeGroup "com.github.rtyley"
         }

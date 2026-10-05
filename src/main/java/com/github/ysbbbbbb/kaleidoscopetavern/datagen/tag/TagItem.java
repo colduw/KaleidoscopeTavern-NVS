@@ -20,15 +20,13 @@ public class TagItem extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        tag(TagCommon.FRUITS_GRAPES).add(
-                ModItems.GRAPE.get()
-        );
+        tag(TagCommon.FRUITS_GRAPES)
+        .add(ModItems.GRAPE.getKey());
 
-        tag(TagCommon.FRUITS).add(
-                ModItems.GRAPE.get(),
-                ModItems.ICE_GRAPE.get(),
-                ModItems.GOLD_GRAPE.get(),
-                ModItems.GREEN_GRAPE.get()
-        );
+        tag(TagCommon.FRUITS)
+        .add(ModItems.GRAPE.getKey())
+        .add(ModItems.ICE_GRAPE.getKey())
+        .add(ModItems.GOLD_GRAPE.getKey())
+        .add(ModItems.GREEN_GRAPE.getKey());
     }
 }

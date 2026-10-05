@@ -19,40 +19,40 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
     @Override
     protected void buildRecipes() {
         // 沙发
-        sofa(ModItems.WHITE_SOFA, Items.WHITE_WOOL);
-        sofa(ModItems.ORANGE_SOFA, Items.ORANGE_WOOL);
-        sofa(ModItems.MAGENTA_SOFA, Items.MAGENTA_WOOL);
-        sofa(ModItems.LIGHT_BLUE_SOFA, Items.LIGHT_BLUE_WOOL);
-        sofa(ModItems.YELLOW_SOFA, Items.YELLOW_WOOL);
-        sofa(ModItems.LIME_SOFA, Items.LIME_WOOL);
-        sofa(ModItems.PINK_SOFA, Items.PINK_WOOL);
-        sofa(ModItems.GRAY_SOFA, Items.GRAY_WOOL);
-        sofa(ModItems.LIGHT_GRAY_SOFA, Items.LIGHT_GRAY_WOOL);
-        sofa(ModItems.CYAN_SOFA, Items.CYAN_WOOL);
-        sofa(ModItems.PURPLE_SOFA, Items.PURPLE_WOOL);
-        sofa(ModItems.BLUE_SOFA, Items.BLUE_WOOL);
-        sofa(ModItems.BROWN_SOFA, Items.BROWN_WOOL);
-        sofa(ModItems.GREEN_SOFA, Items.GREEN_WOOL);
-        sofa(ModItems.BLACK_SOFA, Items.BLACK_WOOL);
-        sofa(ModItems.RED_SOFA, Items.RED_WOOL);
+        sofa(ModItems.WHITE_SOFA, Items.WOOL.white());
+        sofa(ModItems.ORANGE_SOFA, Items.WOOL.orange());
+        sofa(ModItems.MAGENTA_SOFA, Items.WOOL.magenta());
+        sofa(ModItems.LIGHT_BLUE_SOFA, Items.WOOL.lightBlue());
+        sofa(ModItems.YELLOW_SOFA, Items.WOOL.yellow());
+        sofa(ModItems.LIME_SOFA, Items.WOOL.lime());
+        sofa(ModItems.PINK_SOFA, Items.WOOL.pink());
+        sofa(ModItems.GRAY_SOFA, Items.WOOL.gray());
+        sofa(ModItems.LIGHT_GRAY_SOFA, Items.WOOL.lightGray());
+        sofa(ModItems.CYAN_SOFA, Items.WOOL.cyan());
+        sofa(ModItems.PURPLE_SOFA, Items.WOOL.purple());
+        sofa(ModItems.BLUE_SOFA, Items.WOOL.blue());
+        sofa(ModItems.BROWN_SOFA, Items.WOOL.brown());
+        sofa(ModItems.GREEN_SOFA, Items.WOOL.green());
+        sofa(ModItems.BLACK_SOFA, Items.WOOL.black());
+        sofa(ModItems.RED_SOFA, Items.WOOL.red());
 
         // 高脚凳
-        barStool(ModItems.WHITE_BAR_STOOL, Items.WHITE_WOOL);
-        barStool(ModItems.ORANGE_BAR_STOOL, Items.ORANGE_WOOL);
-        barStool(ModItems.MAGENTA_BAR_STOOL, Items.MAGENTA_WOOL);
-        barStool(ModItems.LIGHT_BLUE_BAR_STOOL, Items.LIGHT_BLUE_WOOL);
-        barStool(ModItems.YELLOW_BAR_STOOL, Items.YELLOW_WOOL);
-        barStool(ModItems.LIME_BAR_STOOL, Items.LIME_WOOL);
-        barStool(ModItems.PINK_BAR_STOOL, Items.PINK_WOOL);
-        barStool(ModItems.GRAY_BAR_STOOL, Items.GRAY_WOOL);
-        barStool(ModItems.LIGHT_GRAY_BAR_STOOL, Items.LIGHT_GRAY_WOOL);
-        barStool(ModItems.CYAN_BAR_STOOL, Items.CYAN_WOOL);
-        barStool(ModItems.PURPLE_BAR_STOOL, Items.PURPLE_WOOL);
-        barStool(ModItems.BLUE_BAR_STOOL, Items.BLUE_WOOL);
-        barStool(ModItems.BROWN_BAR_STOOL, Items.BROWN_WOOL);
-        barStool(ModItems.GREEN_BAR_STOOL, Items.GREEN_WOOL);
-        barStool(ModItems.BLACK_BAR_STOOL, Items.BLACK_WOOL);
-        barStool(ModItems.RED_BAR_STOOL, Items.RED_WOOL);
+        barStool(ModItems.WHITE_BAR_STOOL, Items.WOOL.white());
+        barStool(ModItems.ORANGE_BAR_STOOL, Items.WOOL.orange());
+        barStool(ModItems.MAGENTA_BAR_STOOL, Items.WOOL.magenta());
+        barStool(ModItems.LIGHT_BLUE_BAR_STOOL, Items.WOOL.lightBlue());
+        barStool(ModItems.YELLOW_BAR_STOOL, Items.WOOL.yellow());
+        barStool(ModItems.LIME_BAR_STOOL, Items.WOOL.lime());
+        barStool(ModItems.PINK_BAR_STOOL, Items.WOOL.pink());
+        barStool(ModItems.GRAY_BAR_STOOL, Items.WOOL.gray());
+        barStool(ModItems.LIGHT_GRAY_BAR_STOOL, Items.WOOL.lightGray());
+        barStool(ModItems.CYAN_BAR_STOOL, Items.WOOL.cyan());
+        barStool(ModItems.PURPLE_BAR_STOOL, Items.WOOL.purple());
+        barStool(ModItems.BLUE_BAR_STOOL, Items.WOOL.blue());
+        barStool(ModItems.BROWN_BAR_STOOL, Items.WOOL.brown());
+        barStool(ModItems.GREEN_BAR_STOOL, Items.WOOL.green());
+        barStool(ModItems.BLACK_BAR_STOOL, Items.WOOL.black());
+        barStool(ModItems.RED_BAR_STOOL, Items.WOOL.red());
 
         // 黑板
         this.shaped(RecipeCategory.DECORATIONS, ModItems.CHALKBOARD.get())
@@ -84,22 +84,22 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .save(this.output);
 
         // 有色灯串
-        stringLights(ModItems.STRING_LIGHTS_WHITE, Items.WHITE_DYE);
-        stringLights(ModItems.STRING_LIGHTS_ORANGE, Items.ORANGE_DYE);
-        stringLights(ModItems.STRING_LIGHTS_MAGENTA, Items.MAGENTA_DYE);
-        stringLights(ModItems.STRING_LIGHTS_LIGHT_BLUE, Items.LIGHT_BLUE_DYE);
-        stringLights(ModItems.STRING_LIGHTS_YELLOW, Items.YELLOW_DYE);
-        stringLights(ModItems.STRING_LIGHTS_LIME, Items.LIME_DYE);
-        stringLights(ModItems.STRING_LIGHTS_PINK, Items.PINK_DYE);
-        stringLights(ModItems.STRING_LIGHTS_GRAY, Items.GRAY_DYE);
-        stringLights(ModItems.STRING_LIGHTS_LIGHT_GRAY, Items.LIGHT_GRAY_DYE);
-        stringLights(ModItems.STRING_LIGHTS_CYAN, Items.CYAN_DYE);
-        stringLights(ModItems.STRING_LIGHTS_PURPLE, Items.PURPLE_DYE);
-        stringLights(ModItems.STRING_LIGHTS_BLUE, Items.BLUE_DYE);
-        stringLights(ModItems.STRING_LIGHTS_BROWN, Items.BROWN_DYE);
-        stringLights(ModItems.STRING_LIGHTS_GREEN, Items.GREEN_DYE);
-        stringLights(ModItems.STRING_LIGHTS_BLACK, Items.BLACK_DYE);
-        stringLights(ModItems.STRING_LIGHTS_RED, Items.RED_DYE);
+        stringLights(ModItems.STRING_LIGHTS_WHITE, Items.DYE.white());
+        stringLights(ModItems.STRING_LIGHTS_ORANGE, Items.DYE.orange());
+        stringLights(ModItems.STRING_LIGHTS_MAGENTA, Items.DYE.magenta());
+        stringLights(ModItems.STRING_LIGHTS_LIGHT_BLUE, Items.DYE.lightBlue());
+        stringLights(ModItems.STRING_LIGHTS_YELLOW, Items.DYE.yellow());
+        stringLights(ModItems.STRING_LIGHTS_LIME, Items.DYE.lime());
+        stringLights(ModItems.STRING_LIGHTS_PINK, Items.DYE.pink());
+        stringLights(ModItems.STRING_LIGHTS_GRAY, Items.DYE.gray());
+        stringLights(ModItems.STRING_LIGHTS_LIGHT_GRAY, Items.DYE.lightGray());
+        stringLights(ModItems.STRING_LIGHTS_CYAN, Items.DYE.cyan());
+        stringLights(ModItems.STRING_LIGHTS_PURPLE, Items.DYE.purple());
+        stringLights(ModItems.STRING_LIGHTS_BLUE, Items.DYE.blue());
+        stringLights(ModItems.STRING_LIGHTS_BROWN, Items.DYE.brown());
+        stringLights(ModItems.STRING_LIGHTS_GREEN, Items.DYE.green());
+        stringLights(ModItems.STRING_LIGHTS_BLACK, Items.DYE.black());
+        stringLights(ModItems.STRING_LIGHTS_RED, Items.DYE.red());
 
         // 蒙德里安挂画是有序合成
         this.shaped(RecipeCategory.DECORATIONS, ModItems.MONDRIAN_PAINTING.get())
@@ -185,9 +185,9 @@ public class ShapedRecipeProvider extends ModRecipeProvider {
                 .pattern(" F ")
                 .pattern(" I ")
                 .define('W', ItemTags.PLANKS)
-                .define('F', ItemTags.FENCES)
+                .define('F', ItemTags.WOODEN_FENCES)
                 .define('I', Tags.Items.INGOTS_IRON)
-                .unlockedBy("has_fence", has(ItemTags.FENCES))
+                .unlockedBy("has_fence", has(ItemTags.WOODEN_FENCES))
                 .save(this.output);
     }
 
