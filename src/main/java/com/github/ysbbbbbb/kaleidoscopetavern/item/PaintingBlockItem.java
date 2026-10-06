@@ -28,7 +28,6 @@ public class PaintingBlockItem extends BlockItem {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
         if (this.tooltipKey == null) {
             this.tooltipKey = Util.makeDescriptionId("tooltip", BuiltInRegistries.BLOCK.getKey(this.getBlock()));

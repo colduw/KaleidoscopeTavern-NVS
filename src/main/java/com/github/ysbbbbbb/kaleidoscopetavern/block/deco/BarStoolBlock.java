@@ -3,7 +3,6 @@ package com.github.ysbbbbbb.kaleidoscopetavern.block.deco;
 import com.github.ysbbbbbb.kaleidoscopetavern.blockentity.deco.BarStoolBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopetavern.entity.SitEntity;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModBlocks;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -42,8 +41,6 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class BarStoolBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<BarStoolBlock> CODEC = simpleCodec(p -> new BarStoolBlock(p, DyeColor.WHITE));
-
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -172,11 +169,6 @@ public class BarStoolBlock extends BaseEntityBlock implements SimpleWaterloggedB
             case WEST -> WEST_SHAPE;
             default -> NORTH_SHAPE;
         };
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

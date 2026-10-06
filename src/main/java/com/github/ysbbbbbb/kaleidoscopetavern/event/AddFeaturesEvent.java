@@ -7,9 +7,8 @@ import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
-import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.Feature;
+import net.minecraft.world.level.levelgen.feature.TreeFeature;
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecorator;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -21,7 +20,7 @@ public class AddFeaturesEvent {
     public static void addFeatures(ServerAboutToStartEvent event) {
         var access = event.getServer().registryAccess();
 
-        var registry = access.lookupOrThrow(Registries.CONFIGURED_FEATURE);
+        var registry = access.lookupOrThrow(Registries.FEATURE);
         addWildGrapevineTreeDeco(registry, TreeFeatures.SUPER_BIRCH_BEES_0002, 0.002f, 3, 3);
         addWildGrapevineTreeDeco(registry, TreeFeatures.SUPER_BIRCH_BEES, 1f, 1, 3);
 
@@ -43,8 +42,8 @@ public class AddFeaturesEvent {
     }
 
     private static void addWildGrapevineTreeDeco(
-            HolderGetter<ConfiguredFeature<?, ?>> registry,
-            ResourceKey<ConfiguredFeature<?, ?>> id,
+            HolderGetter<Feature> registry,
+            ResourceKey<Feature> id,
             float probability,
             int maxVineCount,
             int vineChainLength
@@ -53,14 +52,21 @@ public class AddFeaturesEvent {
         if (holder.isEmpty()) {
             return;
         }
-        ConfiguredFeature<?, ?> configuredFeature = holder.get().value();
-        FeatureConfiguration config = configuredFeature.config();
-        if (config instanceof TreeConfiguration treeConfiguration) {
+
+        Feature configuredFeature = holder.get().value();
+        if (configuredFeature instanceof TreeFeature treeConfiguration) {
             // 因为原 list 是 ImmutableList，所以只能复制一份新的 list 出来添加装饰器
-            treeConfiguration.decorators = ImmutableList.<TreeDecorator>builder()
-                    .addAll(treeConfiguration.decorators)
-                    .add(new WildGrapevineDecorator(probability, maxVineCount, vineChainLength))
-                    .build();
+            treeConfiguration = new TreeFeature(
+                treeConfiguration.trunkProvider(),
+                treeConfiguration.trunkPlacer(),
+                treeConfiguration.foliageProvider(),
+                treeConfiguration.foliagePlacer(),
+                treeConfiguration.rootPlacer(),
+                treeConfiguration.minimumSize(),
+                ImmutableList.<TreeDecorator>builder().addAll(treeConfiguration.decorators()).add(new WildGrapevineDecorator(probability, maxVineCount, vineChainLength)).build(),
+                treeConfiguration.ignoreVines(),
+                treeConfiguration.belowTrunkProvider()
+            );
         }
     }
 }

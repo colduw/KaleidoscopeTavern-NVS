@@ -1,12 +1,12 @@
 package com.github.ysbbbbbb.kaleidoscopetavern.block.brew;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Prediction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -29,9 +29,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("deprecation")
 public class BottleBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<BottleBlock> CODEC = simpleCodec(p -> new BottleBlock(p, false));
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 14, 11);
 
@@ -53,7 +51,7 @@ public class BottleBlock extends HorizontalDirectionalBlock implements SimpleWat
                 .setId(ResourceKey.create(Registries.BLOCK, id))
                 .noOcclusion()
                 .instabreak()
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .sound(SoundType.GLASS), irregular);
     }
 
@@ -70,7 +68,7 @@ public class BottleBlock extends HorizontalDirectionalBlock implements SimpleWat
         // 如果是空手，那么可以尝试取回
         if (level instanceof ServerLevel serverLevel) {
             getDrops(state, serverLevel, pos, null)
-                    .forEach(stack -> player.getInventory().placeItemBackInInventory(stack));
+                    .forEach(stack -> player.getInventory().placeItemBackInInventory(stack, Prediction.SERVER_ONLY));
             level.setBlock(pos, Blocks.AIR.defaultBlockState(), Block.UPDATE_SUPPRESS_DROPS | Block.UPDATE_ALL);
             level.playSound(null, pos, SoundType.STONE.getPlaceSound(), player.getSoundSource(), 1.0F, 1.0F);
         }
@@ -129,10 +127,5 @@ public class BottleBlock extends HorizontalDirectionalBlock implements SimpleWat
      */
     public boolean irregular() {
         return this.irregular;
-    }
-
-    @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
     }
 }

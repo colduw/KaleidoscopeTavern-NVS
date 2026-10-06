@@ -9,6 +9,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Prediction;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -32,7 +33,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.EnumMap;
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class DrinkBlock extends BottleBlock implements EntityBlock {
     protected final IntegerProperty countProperty;
     protected final int maxCount;
@@ -93,7 +93,7 @@ public class DrinkBlock extends BottleBlock implements EntityBlock {
             ItemStack removeItem = be.removeItem();
             if (!removeItem.isEmpty()) {
                 be.refresh();
-                player.getInventory().placeItemBackInInventory(removeItem);
+                player.getInventory().placeItemBackInInventory(removeItem, Prediction.SERVER_ONLY);
                 // 播放放置的音效
                 level.playSound(null, pos, SoundEvents.GLASS_PLACE, SoundSource.BLOCKS);
             }

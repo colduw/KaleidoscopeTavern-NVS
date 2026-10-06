@@ -10,6 +10,7 @@ import com.mojang.math.Axis;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.core.BlockPos;
@@ -18,6 +19,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.util.Unit;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+
 import org.apache.commons.lang3.StringUtils;
 import org.jspecify.annotations.Nullable;
 
@@ -60,15 +62,13 @@ public class ChalkboardBlockEntityRender extends TextBlockEntityRender<Chalkboar
         // 黑板模型
         poseStack.pushPose();
         poseStack.translate(0.5, 1.5, 0.5);
-        poseStack.mulPose(Axis.ZN.rotationDegrees(180));
-        poseStack.mulPose(Axis.YN.rotationDegrees(180 - facing.get2DDataValue() * 90));
+        poseStack.rotate(Axis.ZN.rotationDegrees(180));
+        poseStack.rotate(Axis.YN.rotationDegrees(180 - facing.get2DDataValue() * 90));
 
         if (isLarge) {
-            submitNodeCollector.submitModel(large, Unit.INSTANCE, poseStack, LARGE_TEXTURE,
-                    light, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
+            submitNodeCollector.submitCrumblingOverlay(large, Unit.INSTANCE, poseStack, RenderTypes.entitySolid(LARGE_TEXTURE), light, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
         } else {
-            submitNodeCollector.submitModel(small, Unit.INSTANCE, poseStack, SMALL_TEXTURE,
-                    light, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
+            submitNodeCollector.submitCrumblingOverlay(small, Unit.INSTANCE, poseStack, RenderTypes.entitySolid(SMALL_TEXTURE), light, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
         }
         poseStack.popPose();
 
@@ -85,7 +85,7 @@ public class ChalkboardBlockEntityRender extends TextBlockEntityRender<Chalkboar
             } else {
                 poseStack.translate(0.5, 1.535, 0.92);
             }
-            poseStack.mulPose(Axis.YN.rotationDegrees(facing.get2DDataValue() * 90));
+            poseStack.rotate(Axis.YN.rotationDegrees(facing.get2DDataValue() * 90));
 
             int maxWidth = isLarge ? 232 : 63;
             doTextRender(state, poseStack, submitNodeCollector, state.text, maxWidth, TEXT_SCALE, MAX_LINES, LINE_HEIGHT);

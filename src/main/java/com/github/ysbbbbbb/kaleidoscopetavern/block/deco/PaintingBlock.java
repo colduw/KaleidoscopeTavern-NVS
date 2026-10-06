@@ -1,6 +1,5 @@
 package com.github.ysbbbbbb.kaleidoscopetavern.block.deco;
 
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -25,10 +24,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("deprecation")
 public class PaintingBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<PaintingBlock> CODEC = simpleCodec(PaintingBlock::new);
-
     public static final EnumProperty<AttachFace> ATTACH_FACE = BlockStateProperties.ATTACH_FACE;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
@@ -109,10 +105,5 @@ public class PaintingBlock extends HorizontalDirectionalBlock implements SimpleW
             case WEST -> WEST_SHAPE;
             default -> NORTH_SHAPE;
         };
-    }
-
-    @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
     }
 }

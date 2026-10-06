@@ -2,7 +2,6 @@ package com.github.ysbbbbbb.kaleidoscopetavern.block.deco;
 
 import com.github.ysbbbbbb.kaleidoscopetavern.block.properties.ConnectionType;
 import com.github.ysbbbbbb.kaleidoscopetavern.entity.SitEntity;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -37,9 +36,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class SofaBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, IConnectionBlock {
-    public static final MapCodec<SofaBlock> CODEC = simpleCodec(SofaBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     // 普通情况
@@ -189,10 +186,5 @@ public class SofaBlock extends HorizontalDirectionalBlock implements SimpleWater
                 default -> EAST_SHAPE;
             };
         }
-    }
-
-    @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
     }
 }

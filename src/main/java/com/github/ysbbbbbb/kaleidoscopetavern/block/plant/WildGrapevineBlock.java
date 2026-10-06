@@ -1,7 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopetavern.block.plant;
 
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModBlocks;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -18,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,9 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.ItemAbilities;
 
-@SuppressWarnings("deprecation")
-public class WildGrapevineBlock extends GrowingPlantHeadBlock implements BonemealableBlock {
-    public static final MapCodec<WildGrapevineBlock> CODEC = simpleCodec(WildGrapevineBlock::new);
+public class WildGrapevineBlock extends GrowingPlantHeadBlock {
     /**
      * 被剪刀修剪过后，无法再随机生长了，直到被重新种植
      */
@@ -48,7 +45,7 @@ public class WildGrapevineBlock extends GrowingPlantHeadBlock implements Bonemea
                         .noCollision()
                         .instabreak()
                         .sound(SoundType.CAVE_VINES)
-                        .pushReaction(PushReaction.DESTROY)
+                        .pushReaction(PushReaction.POPPED)
                 , Direction.DOWN, SHAPE, false, 0.15);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(AGE, 0)
@@ -98,11 +95,6 @@ public class WildGrapevineBlock extends GrowingPlantHeadBlock implements Bonemea
     }
 
     @Override
-    protected MapCodec<? extends GrowingPlantHeadBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
     public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         // 如果被剪刀修剪过了，就不再随机生长了，直到被重新种植
         if (state.getValue(SHEARED)) {
@@ -112,9 +104,9 @@ public class WildGrapevineBlock extends GrowingPlantHeadBlock implements Bonemea
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource bonemealSource) {
         // 只有当没有被剪刀修剪过，才可以使用骨粉生长
-        return !state.getValue(SHEARED) && super.isValidBonemealTarget(level, pos, state);
+        return !state.getValue(SHEARED) && super.isValidBonemealTarget(level, pos, state, bonemealSource);
     }
 
     @Override

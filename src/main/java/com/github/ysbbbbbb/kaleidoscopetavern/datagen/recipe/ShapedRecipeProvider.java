@@ -1,19 +1,21 @@
 package com.github.ysbbbbbb.kaleidoscopetavern.datagen.recipe;
 
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModItems;
-import net.minecraft.core.HolderLookup;
+
+import net.minecraft.advancements.Advancement;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import net.neoforged.neoforge.common.Tags;
 
 import java.util.function.Supplier;
 
 public class ShapedRecipeProvider extends ModRecipeProvider {
-    public ShapedRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
+    public ShapedRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
     }
 
     @Override

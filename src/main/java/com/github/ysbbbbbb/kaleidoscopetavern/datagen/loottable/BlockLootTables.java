@@ -3,8 +3,10 @@ package com.github.ysbbbbbb.kaleidoscopetavern.datagen.loottable;
 import com.github.ysbbbbbb.kaleidoscopetavern.KaleidoscopeTavern;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModItems;
-import net.minecraft.core.HolderLookup;
+
+import net.minecraft.core.Holder;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Items;
@@ -17,9 +19,8 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.functions.SetPotionFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.NumberProvider;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,7 +28,7 @@ import java.util.Set;
 public class BlockLootTables extends BlockLootSubProvider {
     public final Set<Block> knownBlocks = new HashSet<>();
 
-    public BlockLootTables(HolderLookup.Provider registries) {
+    public BlockLootTables(LootTableSubProvider.Context registries) {
         super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
@@ -180,18 +181,18 @@ public class BlockLootTables extends BlockLootSubProvider {
         LootTable.Builder builder = LootTable.lootTable();
         for (ItemLike item : items) {
             LootPool.Builder pool = LootPool.lootPool()
-                    .setRolls(ConstantValue.exactly(1))
+                    .setRolls(ContextIntProviders.exactly(1))
                     .add(LootItem.lootTableItem(item));
             builder.withPool(this.applyExplosionCondition(item, pool));
         }
         return builder;
     }
 
-    protected LootTable.Builder createItemWithCountTable(ItemLike item, NumberProvider countProvider) {
+    protected LootTable.Builder createItemWithCountTable(ItemLike item, ContextIntProvider countProvider) {
         LootTable.Builder builder = LootTable.lootTable();
         LootPool.Builder pool = LootPool.lootPool()
-                .setRolls(ConstantValue.exactly(1))
-                .apply(SetItemCountFunction.setCount(countProvider))
+                .setRolls(ContextIntProviders.exactly(1))
+                .apply(SetItemCountFunction.setCount(Holder.direct(countProvider)))
                 .add(LootItem.lootTableItem(item));
         builder.withPool(this.applyExplosionCondition(item, pool));
         return builder;
@@ -200,7 +201,7 @@ public class BlockLootTables extends BlockLootSubProvider {
     protected LootTable.Builder createWaterBottle() {
         LootTable.Builder builder = LootTable.lootTable();
         LootPool.Builder pool = LootPool.lootPool()
-                .setRolls(ConstantValue.exactly(1))
+                .setRolls(ContextIntProviders.exactly(1))
                 .add(LootItem.lootTableItem(Items.POTION)
                         .apply(SetPotionFunction.setPotion(Potions.WATER)));
         builder.withPool(this.applyExplosionCondition(Items.POTION, pool));
@@ -209,7 +210,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
     public LootTable.Builder createGrapeItemTable(ItemLike item) {
         LootTable.Builder builder = LootTable.lootTable();
-        var countProvider = UniformGenerator.between(1, 2);
+        var countProvider = ContextIntProviders.between(1,2);
 
         // 主葡萄
         LootPool.Builder pool = LootPool.lootPool()
@@ -219,7 +220,7 @@ public class BlockLootTables extends BlockLootSubProvider {
 
         // 30% 概率额外掉落 1 个
         LootPool.Builder extraPool = LootPool.lootPool()
-                .setRolls(ConstantValue.exactly(1))
+                .setRolls(ContextIntProviders.exactly(1))
                 .when(LootItemRandomChanceCondition.randomChance(0.3f))
                 .add(LootItem.lootTableItem(ModItems.GREEN_GRAPE.get()));
         builder.withPool(this.applyExplosionCondition(item, extraPool));

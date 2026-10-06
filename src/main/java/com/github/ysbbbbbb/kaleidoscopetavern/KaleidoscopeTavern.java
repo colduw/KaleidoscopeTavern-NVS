@@ -16,7 +16,7 @@ public class KaleidoscopeTavern {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public KaleidoscopeTavern(IEventBus modEventBus, ModContainer modContainer) {
-        modContainer.registerConfig(ModConfig.Type.COMMON, GeneralConfig.init());
+        modContainer.registerConfig(ModConfig.Type.LOCAL, GeneralConfig.init());
 
         ModBlocks.BLOCKS.register(modEventBus);
         ModBlocks.BLOCK_ENTITIES.register(modEventBus);

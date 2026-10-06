@@ -21,12 +21,12 @@ public class TagItem extends ItemTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         tag(TagCommon.FRUITS_GRAPES)
-        .add(ModItems.GRAPE.getKey());
+        .add(ModItems.GRAPE.unwrapKey().get());
 
         tag(TagCommon.FRUITS)
-        .add(ModItems.GRAPE.getKey())
-        .add(ModItems.ICE_GRAPE.getKey())
-        .add(ModItems.GOLD_GRAPE.getKey())
-        .add(ModItems.GREEN_GRAPE.getKey());
+        .add(ModItems.GRAPE.unwrapKey().get())
+        .add(ModItems.ICE_GRAPE.unwrapKey().get())
+        .add(ModItems.GOLD_GRAPE.unwrapKey().get())
+        .add(ModItems.GREEN_GRAPE.unwrapKey().get());
     }
 }

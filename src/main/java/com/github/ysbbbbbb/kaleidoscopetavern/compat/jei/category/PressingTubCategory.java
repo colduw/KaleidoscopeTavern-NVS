@@ -76,7 +76,7 @@ public class PressingTubCategory implements IRecipeCategory<RecipeHolder<Pressin
 
         Ingredient input = recipe.input();
         int finalNeedPressCount = needPressCount;
-        List<ItemStack> list = input.items()
+        List<ItemStack> list = input.getValues().stream()
                 .map(holderItem -> new ItemStack(holderItem, finalNeedPressCount))
                 .toList();
         builder.addSlot(RecipeIngredientRole.INPUT, 32, 13)

@@ -19,7 +19,7 @@ public class MolotovBlock extends BottleBlock {
                 .noOcclusion()
                 .instabreak()
                 .lightLevel(s -> 14)
-                .pushReaction(PushReaction.DESTROY)
+                .pushReaction(PushReaction.POPPED)
                 .sound(SoundType.GLASS), false);
     }
 

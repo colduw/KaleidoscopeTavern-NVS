@@ -2,7 +2,6 @@ package com.github.ysbbbbbb.kaleidoscopetavern.block.brew;
 
 import com.github.ysbbbbbb.kaleidoscopetavern.api.blockentity.IPressingTub;
 import com.github.ysbbbbbb.kaleidoscopetavern.blockentity.brew.PressingTubBlockEntity;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -47,8 +46,6 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class PressingTubBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<PressingTubBlock> CODEC = simpleCodec(PressingTubBlock::new);
-
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty TILT = BooleanProperty.create("tilt");
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -283,10 +280,5 @@ public class PressingTubBlock extends BaseEntityBlock implements SimpleWaterlogg
     @Override
     public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 }

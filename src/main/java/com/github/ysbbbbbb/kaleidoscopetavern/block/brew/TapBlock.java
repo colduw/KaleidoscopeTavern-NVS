@@ -5,7 +5,6 @@ import com.github.ysbbbbbb.kaleidoscopetavern.blockentity.brew.TapBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopetavern.game.tap.TapBehaviorManager;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopetavern.util.VoxelShapeUtils;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleOptions;
@@ -51,8 +50,6 @@ import static com.github.ysbbbbbb.kaleidoscopetavern.blockentity.brew.TapBlockEn
 
 @SuppressWarnings("deprecation")
 public class TapBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<TapBlock> CODEC = simpleCodec(TapBlock::new);
-
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty TRIGGERED = BlockStateProperties.TRIGGERED;
@@ -289,12 +286,7 @@ public class TapBlock extends BaseEntityBlock implements SimpleWaterloggedBlock 
     }
 
     @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
-    }
-
-    @Override
-    public boolean canConnectRedstone(BlockState state, BlockGetter level, BlockPos pos, @Nullable Direction direction) {
+    public boolean shouldRedstoneWireConnectTo(BlockState state, BlockGetter level, BlockPos pos, @Nullable Direction direction) {
         return true;
     }
 }

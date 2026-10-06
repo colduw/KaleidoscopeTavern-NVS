@@ -1,5 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopetavern.item;
 
+import net.minecraft.util.Prediction;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -35,7 +36,7 @@ public interface IHasContainer {
             return carried;
         }
         if (entity instanceof Player player) {
-            player.getInventory().placeItemBackInInventory(carried);
+            player.getInventory().placeItemBackInInventory(carried, Prediction.SERVER_ONLY);
         } else {
             ItemEntity itemEntity = new ItemEntity(level, entity.getX(), entity.getY(), entity.getZ(), carried);
             level.addFreshEntity(itemEntity);

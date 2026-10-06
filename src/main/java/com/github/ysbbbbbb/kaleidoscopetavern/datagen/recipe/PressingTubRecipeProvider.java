@@ -4,13 +4,15 @@ import com.github.ysbbbbbb.kaleidoscopetavern.datagen.builder.PressingTubBuilder
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModFluids;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.tag.TagCommon;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.recipes.RecipeOutput;
+
+import net.minecraft.advancements.Advancement;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 
 public class PressingTubRecipeProvider extends ModRecipeProvider {
-    public PressingTubRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
+    public PressingTubRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
     }
 
     @Override

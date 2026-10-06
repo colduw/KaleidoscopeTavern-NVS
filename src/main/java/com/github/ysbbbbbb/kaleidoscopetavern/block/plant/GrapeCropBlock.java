@@ -19,6 +19,7 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.BonemealSource;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -40,7 +41,6 @@ import java.util.List;
 import java.util.function.Supplier;
 
 
-@SuppressWarnings("deprecation")
 public class GrapeCropBlock extends Block implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
     public static final int MAX_AGE = BlockStateProperties.MAX_AGE_5;
@@ -65,7 +65,7 @@ public class GrapeCropBlock extends Block implements BonemealableBlock {
                 .instabreak()
                 .sound(SoundType.CROP)
                 .offsetType(BlockBehaviour.OffsetType.XYZ)
-                .pushReaction(PushReaction.DESTROY), probability, shearResult);
+                .pushReaction(PushReaction.POPPED), probability, shearResult);
     }
 
     public GrapeCropBlock(Properties properties, GrowPerTickProbability probability, Supplier<ItemStack> shearResult) {
@@ -134,17 +134,17 @@ public class GrapeCropBlock extends Block implements BonemealableBlock {
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource bonemealSource) {
         return !this.isMaxAge(state);
     }
 
     @Override
-    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state) {
+    public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos pos, BlockState state, BonemealSource bonemealSource) {
         return true;
     }
 
     @Override
-    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state, BonemealSource bonemealSource) {
         int newAge = Math.min(state.getValue(AGE) + random.nextInt(1, 3), MAX_AGE);
         level.setBlockAndUpdate(pos, state.setValue(AGE, newAge));
     }

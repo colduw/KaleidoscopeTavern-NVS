@@ -4,18 +4,20 @@ import com.github.ysbbbbbb.kaleidoscopetavern.KaleidoscopeTavern;
 import com.github.ysbbbbbb.kaleidoscopetavern.block.deco.SandwichBoardBlock;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModItems;
 import com.github.ysbbbbbb.kaleidoscopetavern.item.SandwichBoardBlockItem;
-import net.minecraft.core.HolderLookup;
+
+import net.minecraft.advancements.Advancement;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.neoforged.neoforge.common.Tags;
 
 public class ShapelessRecipeProvider extends ModRecipeProvider {
-    public ShapelessRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
+    public ShapelessRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
     }
 
     @Override

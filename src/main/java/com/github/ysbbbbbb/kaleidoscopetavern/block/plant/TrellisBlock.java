@@ -11,6 +11,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -37,13 +38,11 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.NeoForge;
 import org.jetbrains.annotations.Nullable;
 
 import static com.github.ysbbbbbb.kaleidoscopetavern.block.plant.ITrellis.*;
 
-@SuppressWarnings("deprecation")
 public class TrellisBlock extends Block implements SimpleWaterloggedBlock, ITrellis {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty WAXED = BooleanProperty.create("waxed");
@@ -72,15 +71,15 @@ public class TrellisBlock extends Block implements SimpleWaterloggedBlock, ITrel
                                        Player player, InteractionHand hand, BlockHitResult hitResult) {
         // 打蜡与去除
         boolean waxed = state.getValue(WAXED);
-        if (waxed && player.getItemInHand(hand).canPerformAction(ItemAbilities.AXE_WAX_OFF)) {
+        if (waxed && player.getItemInHand(hand).is(ItemTags.AXES)) {
             level.setBlockAndUpdate(pos, state.setValue(WAXED, false));
-            level.playSound(player, pos, SoundEvents.AXE_WAX_OFF, SoundSource.BLOCKS, 1.0F, 1.0F);
+            level.playSound(player, pos, SoundEvents.AXE_WAX_OFF.value(), SoundSource.BLOCKS, 1.0F, 1.0F);
             level.levelEvent(player, LevelEvent.PARTICLES_WAX_OFF, pos, 0);
             return InteractionResult.SUCCESS;
         } else if (!waxed && player.getItemInHand(hand).is(Items.HONEYCOMB)) {
             level.setBlockAndUpdate(pos, state.setValue(WAXED, true));
             level.playSound(player, pos, SoundEvents.HONEYCOMB_WAX_ON, SoundSource.BLOCKS, 1.0F, 1.0F);
-            level.levelEvent(player, LevelEvent.PARTICLES_AND_SOUND_WAX_ON, pos, 0);
+            level.levelEvent(player, LevelEvent.PARTICLES_WAX_ON, pos, 0);
             return InteractionResult.SUCCESS;
         }
         // 玩家手持的是葡萄藤

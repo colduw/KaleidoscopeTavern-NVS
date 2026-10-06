@@ -47,8 +47,8 @@ public class ThrownMolotovRenderer extends EntityRenderer<ThrownMolotovEntity, E
         // 飞行时旋转
         float rotation = state.ageInTicks * 20.0F;
         poseStack.translate(0.5, 0.5, 0.5);
-        poseStack.mulPose(Axis.YP.rotationDegrees(rotation));
-        poseStack.mulPose(Axis.XP.rotationDegrees(rotation * 0.7F));
+        poseStack.rotate(Axis.YP.rotationDegrees(rotation));
+        poseStack.rotate(Axis.XP.rotationDegrees(rotation * 0.7F));
         poseStack.translate(-0.5, -0.5, -0.5);
 
         // 更新并提交 Molotov 方块的模型

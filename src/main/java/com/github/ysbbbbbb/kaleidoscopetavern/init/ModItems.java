@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -112,10 +113,10 @@ public interface ModItems {
     // 藤架
     DeferredItem<Item> TRELLIS = ITEMS.register("trellis", id -> new BlockItem(ModBlocks.TRELLIS.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));
     // 葡萄
-    DeferredItem<Item> GRAPE = ITEMS.register("grape", id -> new Item(new Item.Properties().food(ModFoods.GRAPE).setId(ResourceKey.create(Registries.ITEM, id))));
-    DeferredItem<Item> ICE_GRAPE = ITEMS.register("ice_grape", id -> new Item(new Item.Properties().food(ModFoods.GRAPE).setId(ResourceKey.create(Registries.ITEM, id))));
-    DeferredItem<Item> GOLD_GRAPE = ITEMS.register("gold_grape", id -> new Item(new Item.Properties().food(ModFoods.GRAPE).setId(ResourceKey.create(Registries.ITEM, id))));
-    DeferredItem<Item> GREEN_GRAPE = ITEMS.register("green_grape", id -> new Item(new Item.Properties().food(ModFoods.GRAPE).setId(ResourceKey.create(Registries.ITEM, id))));
+    DeferredItem<Item> GRAPE = ITEMS.register("grape", id -> new Item(new Item.Properties().food(ModFoods.GRAPE).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM).setId(ResourceKey.create(Registries.ITEM, id))));
+    DeferredItem<Item> ICE_GRAPE = ITEMS.register("ice_grape", id -> new Item(new Item.Properties().food(ModFoods.GRAPE).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM).setId(ResourceKey.create(Registries.ITEM, id))));
+    DeferredItem<Item> GOLD_GRAPE = ITEMS.register("gold_grape", id -> new Item(new Item.Properties().food(ModFoods.GRAPE).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM).setId(ResourceKey.create(Registries.ITEM, id))));
+    DeferredItem<Item> GREEN_GRAPE = ITEMS.register("green_grape", id -> new Item(new Item.Properties().food(ModFoods.GRAPE).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM).setId(ResourceKey.create(Registries.ITEM, id))));
 
     // 果盆
     DeferredItem<Item> PRESSING_TUB = ITEMS.register("pressing_tub", id -> new BlockItem(ModBlocks.PRESSING_TUB.get(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM, id))));

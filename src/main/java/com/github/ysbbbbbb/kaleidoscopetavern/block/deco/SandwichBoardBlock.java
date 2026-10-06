@@ -3,7 +3,6 @@ package com.github.ysbbbbbb.kaleidoscopetavern.block.deco;
 import com.github.ysbbbbbb.kaleidoscopetavern.blockentity.deco.SandwichBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopetavern.blockentity.deco.TextBlockEntity;
 import com.google.common.collect.Maps;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -45,7 +44,6 @@ import java.util.Map;
 
 @SuppressWarnings("deprecation")
 public class SandwichBoardBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<SandwichBoardBlock> CODEC = simpleCodec(p -> new SandwichBoardBlock(p, List.of()));
     public static final Map<Item, SandwichBoardBlock> TRANSFORM_MAP = Maps.newHashMap();
 
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
@@ -232,10 +230,5 @@ public class SandwichBoardBlock extends BaseEntityBlock implements SimpleWaterlo
 
     public List<Item> getTransformItems() {
         return transformItems;
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 }

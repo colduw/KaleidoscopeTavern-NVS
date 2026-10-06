@@ -1,23 +1,27 @@
 package com.github.ysbbbbbb.kaleidoscopetavern.datagen.recipe;
 
 import com.google.common.collect.Lists;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
+
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.item.crafting.Recipe;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 
 public class ModRecipeGenerator extends ModRecipeProvider {
     private final List<ModRecipeProvider> providers = Lists.newArrayList();
 
-    public ModRecipeGenerator(HolderLookup.Provider registries, RecipeOutput output) {
-        super(registries, output);
-        providers.add(new PressingTubRecipeProvider(registries, output));
-        providers.add(new BarrelRecipeProvider(registries, output));
-        providers.add(new ShapedRecipeProvider(registries, output));
-        providers.add(new ShapelessRecipeProvider(registries, output));
+    public ModRecipeGenerator(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
+        providers.add(new PressingTubRecipeProvider(recipeOutput, advancementOutput));
+        providers.add(new BarrelRecipeProvider(recipeOutput, advancementOutput));
+        providers.add(new ShapedRecipeProvider(recipeOutput, advancementOutput));
+        providers.add(new ShapelessRecipeProvider(recipeOutput, advancementOutput));
     }
 
     @Override
@@ -27,20 +31,19 @@ public class ModRecipeGenerator extends ModRecipeProvider {
         }
     }
 
-    @SuppressWarnings("all")
-    public static class Runner extends RecipeProvider.Runner {
-        public Runner(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries) {
-            super(packOutput, registries);
-        }
+    public static MultiRegistryBootstrap create() {
+        return new MultiRegistryBootstrap() {
+            @Override
+            public Set<ResourceKey<? extends Registry<?>>> requestedRegistries() {
+                // Return the registries we are adding entries to.
+                return Set.of(Registries.RECIPE, Registries.ADVANCEMENT);
+            }
 
-        @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider registries, RecipeOutput output) {
-            return new ModRecipeGenerator(registries, output);
-        }
-
-        @Override
-        public String getName() {
-            return "kaleidoscope Tavern Recipes";
-        }
+            @Override
+            public void run(MultiRegistryBootstrap.BootstrapGetter registries) {
+                // Run the recipe provider.
+                new ModRecipeGenerator(registries.get(Registries.RECIPE), registries.get(Registries.ADVANCEMENT)).buildRecipes();
+            }
+        };
     }
 }

@@ -3,7 +3,6 @@ package com.github.ysbbbbbb.kaleidoscopetavern.block.brew;
 import com.github.ysbbbbbb.kaleidoscopetavern.blockentity.brew.BarrelBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModBlocks;
 import com.github.ysbbbbbb.kaleidoscopetavern.util.FluidUtils;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -45,7 +44,6 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class BarrelBlock extends BaseEntityBlock {
-    public static final MapCodec<BarrelBlock> CODEC = simpleCodec(BarrelBlock::new);
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     /**
      * 对应酒桶的上中下三层
@@ -76,7 +74,7 @@ public class BarrelBlock extends BaseEntityBlock {
                 .strength(2.5F)
                 .sound(SoundType.WOOD)
                 .noOcclusion()
-                .pushReaction(PushReaction.BLOCK)
+                .pushReaction(PushReaction.IMMOVEABLE)
                 .ignitedByLava());
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.NORTH)
@@ -344,10 +342,5 @@ public class BarrelBlock extends BaseEntityBlock {
     @Override
     public BlockState mirror(BlockState state, Mirror mirror) {
         return state.rotate(mirror.getRotation(state.getValue(FACING)));
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 }

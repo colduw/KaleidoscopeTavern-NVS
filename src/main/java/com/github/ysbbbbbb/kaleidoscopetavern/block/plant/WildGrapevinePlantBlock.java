@@ -1,7 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopetavern.block.plant;
 
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModBlocks;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -17,9 +16,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class WildGrapevinePlantBlock extends GrowingPlantBodyBlock implements BonemealableBlock {
-    public static final MapCodec<WildGrapevinePlantBlock> CODEC = simpleCodec(WildGrapevinePlantBlock::new);
-
+public class WildGrapevinePlantBlock extends GrowingPlantBodyBlock {
     private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 16, 15);
 
     public WildGrapevinePlantBlock(Identifier id) {
@@ -29,7 +26,7 @@ public class WildGrapevinePlantBlock extends GrowingPlantBodyBlock implements Bo
                         .noCollision()
                         .instabreak()
                         .sound(SoundType.CAVE_VINES)
-                        .pushReaction(PushReaction.DESTROY),
+                        .pushReaction(PushReaction.POPPED),
                 Direction.DOWN, SHAPE, false);
     }
 
@@ -59,16 +56,11 @@ public class WildGrapevinePlantBlock extends GrowingPlantBodyBlock implements Bo
     }
 
     @Override
-    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state) {
+    public boolean isValidBonemealTarget(LevelReader level, BlockPos pos, BlockState state, BonemealSource bonemealSource) {
         GrowingPlantHeadBlock headBlock = this.getHeadBlock();
         return BlockUtil.getTopConnectedBlock(level, pos, state.getBlock(), this.growthDirection, headBlock).map(headPos -> {
             BlockState blockState = level.getBlockState(headPos);
             return blockState.is(headBlock) && !blockState.getValue(WildGrapevineBlock.SHEARED);
         }).orElse(false);
-    }
-
-    @Override
-    protected MapCodec<? extends GrowingPlantBodyBlock> codec() {
-        return CODEC;
     }
 }

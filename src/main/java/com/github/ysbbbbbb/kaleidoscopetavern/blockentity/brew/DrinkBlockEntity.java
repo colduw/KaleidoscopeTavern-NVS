@@ -10,7 +10,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 
-@SuppressWarnings("deprecation")
 public class DrinkBlockEntity extends BaseBlockEntity {
     // 实际上这个物品列表的大小应该是可变的，但为了简化实现，我们暂时将其固定为4个。
     private final NonNullList<ItemStack> items = NonNullList.withSize(4, ItemStack.EMPTY);

@@ -20,7 +20,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
-@SuppressWarnings("deprecation")
 public class BarCabinetBlockEntityRender implements BlockEntityRenderer<BarCabinetBlockEntity, BarCabinetRenderState> {
     public static final BlockDisplayContext BLOCK_DISPLAY_CONTEXT = BlockDisplayContext.create();
     private final BlockModelResolver blockModelResolver;
@@ -47,7 +46,7 @@ public class BarCabinetBlockEntityRender implements BlockEntityRenderer<BarCabin
             if (!leftBlockRender.isEmpty()) {
                 poseStack.pushPose();
                 poseStack.translate(0.5, 0, 0.5);
-                poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+                poseStack.rotate(Axis.YP.rotationDegrees(angle));
                 poseStack.translate(0, 0.0625, 0);
                 poseStack.scale(scale, scale, scale);
                 poseStack.translate(-0.5, 0, -0.5);
@@ -58,7 +57,7 @@ public class BarCabinetBlockEntityRender implements BlockEntityRenderer<BarCabin
             if (!leftBlockRender.isEmpty()) {
                 poseStack.pushPose();
                 poseStack.translate(0.5, 0, 0.5);
-                poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+                poseStack.rotate(Axis.YP.rotationDegrees(angle));
                 poseStack.translate(direction.getAxis() == Direction.Axis.Z ? 0.25 : -0.25, 0.0625, 0);
                 poseStack.scale(scale, scale, scale);
                 poseStack.translate(-0.5, 0, -0.5);
@@ -69,7 +68,7 @@ public class BarCabinetBlockEntityRender implements BlockEntityRenderer<BarCabin
             if (!rightBlockRender.isEmpty()) {
                 poseStack.pushPose();
                 poseStack.translate(0.5, 0, 0.5);
-                poseStack.mulPose(Axis.YP.rotationDegrees(angle));
+                poseStack.rotate(Axis.YP.rotationDegrees(angle));
                 poseStack.translate(direction.getAxis() == Direction.Axis.Z ? -0.25 : 0.25, 0.0625, 0);
                 poseStack.scale(scale, scale, scale);
                 poseStack.translate(-0.5, 0, -0.5);

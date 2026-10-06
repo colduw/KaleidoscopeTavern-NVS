@@ -62,11 +62,10 @@ public class BarStoolBlockEntityRender implements BlockEntityRenderer<BarStoolBl
 
         poseStack.pushPose();
         poseStack.translate(0.5, 1.5, 0.5);
-        poseStack.mulPose(Axis.ZN.rotationDegrees(180.0F));
-        poseStack.mulPose(Axis.YN.rotationDegrees(180.0F - state.renderRot));
+        poseStack.rotate(Axis.ZN.rotationDegrees(180.0F));
+        poseStack.rotate(Axis.YN.rotationDegrees(180.0F - state.renderRot));
 
-        submitNodeCollector.submitModel(this.model, Unit.INSTANCE, poseStack, tex,
-                state.lightCoords, OverlayTexture.NO_OVERLAY, 0, null);
+        submitNodeCollector.submitModel(this.model, Unit.INSTANCE, poseStack, tex, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 
         poseStack.popPose();
     }

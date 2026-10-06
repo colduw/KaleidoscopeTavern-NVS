@@ -3,7 +3,6 @@ package com.github.ysbbbbbb.kaleidoscopetavern.block.brew;
 import com.github.ysbbbbbb.kaleidoscopetavern.block.properties.PositionType;
 import com.github.ysbbbbbb.kaleidoscopetavern.blockentity.brew.BarCabinetBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopetavern.item.BottleBlockItem;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.Registries;
@@ -36,7 +35,6 @@ import java.util.List;
 
 @SuppressWarnings("deprecation")
 public class BarCabinetBlock extends BaseEntityBlock {
-    public static final MapCodec<BarCabinetBlock> CODEC = simpleCodec(BarCabinetBlock::new);
     public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final EnumProperty<PositionType> POSITION = EnumProperty.create("position", PositionType.class);
 
@@ -291,11 +289,6 @@ public class BarCabinetBlock extends BaseEntityBlock {
     @Nullable
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new BarCabinetBlockEntity(pos, state);
-    }
-
-    @Override
-    protected MapCodec<? extends BaseEntityBlock> codec() {
-        return CODEC;
     }
 
     @Override

@@ -5,7 +5,7 @@ import com.github.ysbbbbbb.kaleidoscopetavern.datamap.data.DrinkEffectData;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.neoforged.bus.api.IEventBus;
-import net.neoforged.neoforge.registries.DataPackRegistryEvent;
+import net.neoforged.neoforge.registries.NewDatapackRegistryEvent;
 
 public final class ModDatapackRegistries {
     public static final ResourceKey<Registry<DrinkEffectData>> DRINK_EFFECT = ResourceKey.createRegistryKey(
@@ -16,8 +16,8 @@ public final class ModDatapackRegistries {
         modEventBus.addListener(ModDatapackRegistries::registerDatapackRegistries);
     }
 
-    private static void registerDatapackRegistries(DataPackRegistryEvent.NewRegistry event) {
-        event.dataPackRegistry(
+    private static void registerDatapackRegistries(NewDatapackRegistryEvent event) {
+        event.worldRegistry(
                 DRINK_EFFECT,
                 DrinkEffectData.DIRECT_CODEC,
                 DrinkEffectData.DIRECT_CODEC

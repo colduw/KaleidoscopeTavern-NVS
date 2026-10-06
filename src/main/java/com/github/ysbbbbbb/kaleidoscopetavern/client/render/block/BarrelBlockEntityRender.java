@@ -108,11 +108,10 @@ public class BarrelBlockEntityRender implements BlockEntityRenderer<BarrelBlockE
 
         poseStack.pushPose();
         poseStack.translate(0.5, 1.5, 0.5);
-        poseStack.mulPose(Axis.ZN.rotationDegrees(180));
-        poseStack.mulPose(Axis.YN.rotationDegrees(180 - facing.get2DDataValue() * 90));
+        poseStack.rotate(Axis.ZN.rotationDegrees(180));
+        poseStack.rotate(Axis.YN.rotationDegrees(180 - facing.get2DDataValue() * 90));
 
-        submitNodeCollector.submitModel(this.model, state, poseStack, LARGE_TEXTURE,
-                state.lightCoords, OverlayTexture.NO_OVERLAY, 0, null);
+        submitNodeCollector.submitModel(this.model, state, poseStack, LARGE_TEXTURE, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 
         poseStack.popPose();
     }
@@ -160,9 +159,9 @@ public class BarrelBlockEntityRender implements BlockEntityRenderer<BarrelBlockE
 
             poseStack.translate(0.5f + x, 2.7f + y, 0.5f + z);
             poseStack.scale(0.5f, 0.5f, 0.5f);
-            poseStack.mulPose(Axis.XN.rotationDegrees(90));
-            poseStack.mulPose(Axis.YN.rotationDegrees(yRot));
-            poseStack.mulPose(Axis.ZN.rotationDegrees(zRot));
+            poseStack.rotate(Axis.XN.rotationDegrees(90));
+            poseStack.rotate(Axis.YN.rotationDegrees(yRot));
+            poseStack.rotate(Axis.ZN.rotationDegrees(zRot));
 
             itemRender.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
 

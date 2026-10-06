@@ -1,7 +1,6 @@
 package com.github.ysbbbbbb.kaleidoscopetavern.block.deco;
 
 import com.google.common.collect.Maps;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -43,9 +42,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.Objects;
 
-@SuppressWarnings("deprecation")
 public class StringLightsBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<StringLightsBlock> CODEC = simpleCodec(p -> new StringLightsBlock(p, DyeColor.WHITE));
     public static final Map<Item, StringLightsBlock> TRANSFORM_MAP = Maps.newHashMap();
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -159,10 +156,5 @@ public class StringLightsBlock extends HorizontalDirectionalBlock implements Sim
             case WEST -> WEST_SHAPE;
             default -> NORTH_SHAPE;
         };
-    }
-
-    @Override
-    protected MapCodec<? extends HorizontalDirectionalBlock> codec() {
-        return CODEC;
     }
 }

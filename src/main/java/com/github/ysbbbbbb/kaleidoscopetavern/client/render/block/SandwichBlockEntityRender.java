@@ -37,25 +37,25 @@ public class SandwichBlockEntityRender extends TextBlockEntityRender<SandwichBlo
         switch (state.facing) {
             case SOUTH -> {
                 poseStack.translate(0.5, 1.06, 0.56);
-                poseStack.mulPose(Axis.XN.rotationDegrees(22.5f));
+                poseStack.rotate(Axis.XN.rotationDegrees(22.5f));
             }
             case NORTH -> {
                 poseStack.translate(0.5, 1.06, 0.44);
-                poseStack.mulPose(Axis.XP.rotationDegrees(22.5f));
+                poseStack.rotate(Axis.XP.rotationDegrees(22.5f));
             }
             case EAST -> {
                 poseStack.translate(0.56, 1.06, 0.5);
-                poseStack.mulPose(Axis.ZP.rotationDegrees(22.5f));
+                poseStack.rotate(Axis.ZP.rotationDegrees(22.5f));
             }
             case WEST -> {
                 poseStack.translate(0.44, 1.06, 0.5);
-                poseStack.mulPose(Axis.ZN.rotationDegrees(22.5f));
+                poseStack.rotate(Axis.ZN.rotationDegrees(22.5f));
             }
             default -> {
             }
         }
 
-        poseStack.mulPose(Axis.YN.rotationDegrees(state.facing.get2DDataValue() * 90));
+        poseStack.rotate(Axis.YN.rotationDegrees(state.facing.get2DDataValue() * 90));
         doTextRender(state, poseStack, submitNodeCollector, state.text, MAX_WIDTH, TEXT_SCALE, MAX_LINES, LINE_HEIGHT);
 
         poseStack.popPose();
