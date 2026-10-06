@@ -71,6 +71,7 @@ repositories {
         url = "https://maven.blamejared.com/"
         content {
             includeGroup "mezz.jei"
+            includeGroup "net.mezzdev.config"
         }
     }
     maven {
@@ -78,6 +79,7 @@ repositories {
         url = "https://modmaven.dev"
         content {
             includeGroup "mezz.jei"
+            includeGroup "net.mezzdev.config"
         }
     }
     maven {
@@ -120,19 +122,19 @@ repositories {
 
 dependencies {
     // JEI
-    compileOnly "mezz.jei:jei-26.1.2-neoforge-api:29.5.0.26"
-    runtimeOnly "mezz.jei:jei-26.1.2-neoforge:29.5.0.26"
+    compileOnly "mezz.jei:jei-26.2-neoforge-api:30.9.0.57"
+    runtimeOnly "mezz.jei:jei-26.2-neoforge:30.9.0.57"
 
     // EMI
-    compileOnly "maven.modrinth:emi:1.1.22+1.21.1+neoforge"
+    compileOnly "maven.modrinth:emi:1.1.24+1.21.1+neoforge"
 
     // REI
-    compileOnly "maven.modrinth:cloth-config:15.0.140+neoforge"
-    compileOnly "maven.modrinth:architectury-api:13.0.8+neoforge"
-    compileOnly "maven.modrinth:rei:16.0.788+neoforge"
+    compileOnly "maven.modrinth:cloth-config:26.2.155+neoforge"
+    compileOnly "maven.modrinth:architectury-api:21.1.11+neoforge"
+    compileOnly "maven.modrinth:rei:26.2.820+neoforge"
 
     // Jade
-    implementation "maven.modrinth:jade:26.1.1+neoforge"
+    implementation "maven.modrinth:jade:26.2.10+neoforge"
 
     // KubeJS
     // compileOnly "dev.latvian.mods:rhino:2101.2.7-build.72"
@@ -144,7 +146,7 @@ dependencies {
     // runtimeOnly "maven.modrinth:kiwi:15.6.1+neoforge"
 
     // Ponder
-    compileOnly "net.createmod.ponder:Ponder-NeoForge-1.21.1:1.0.56"
+    compileOnly "net.createmod.ponder:Ponder-NeoForge-1.21.1:1.0.69"
     // runtimeOnly "maven.modrinth:create:1.21.1-6.0.6"
 
     // runtimeOnly "maven.modrinth:carry-on:2.2.4-neoforge,1.21.1"
