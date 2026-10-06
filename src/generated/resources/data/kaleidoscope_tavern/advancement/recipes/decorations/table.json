@@ -5,7 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": "#minecraft:fences"
+            "items": "#minecraft:wooden_fences"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "kaleidoscope_tavern:table"
+        "recipes": "kaleidoscope_tavern:table"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

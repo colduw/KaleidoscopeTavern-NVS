@@ -17,9 +17,8 @@ public final class ModDatapackRegistries {
     }
 
     private static void registerDatapackRegistries(NewDatapackRegistryEvent event) {
-        event.worldRegistry(
+        event.reloadableRegistry(
                 DRINK_EFFECT,
-                DrinkEffectData.DIRECT_CODEC,
                 DrinkEffectData.DIRECT_CODEC
         );
     }

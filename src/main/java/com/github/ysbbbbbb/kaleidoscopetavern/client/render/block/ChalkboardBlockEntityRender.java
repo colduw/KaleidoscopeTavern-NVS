@@ -66,9 +66,9 @@ public class ChalkboardBlockEntityRender extends TextBlockEntityRender<Chalkboar
         poseStack.rotate(Axis.YN.rotationDegrees(180 - facing.get2DDataValue() * 90));
 
         if (isLarge) {
-            submitNodeCollector.submitCrumblingOverlay(large, Unit.INSTANCE, poseStack, RenderTypes.entitySolid(LARGE_TEXTURE), light, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
+            submitNodeCollector.submitModel(large, Unit.INSTANCE, poseStack, LARGE_TEXTURE, light, OverlayTexture.NO_OVERLAY, 0);
         } else {
-            submitNodeCollector.submitCrumblingOverlay(small, Unit.INSTANCE, poseStack, RenderTypes.entitySolid(SMALL_TEXTURE), light, OverlayTexture.NO_OVERLAY, 0, state.breakProgress);
+            submitNodeCollector.submitModel(small, Unit.INSTANCE, poseStack, SMALL_TEXTURE, light, OverlayTexture.NO_OVERLAY, 0);
         }
         poseStack.popPose();
 
