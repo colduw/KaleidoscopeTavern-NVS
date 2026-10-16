@@ -40,7 +40,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Supplier;
 
-
 public class GrapeCropBlock extends Block implements BonemealableBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_5;
     public static final int MAX_AGE = BlockStateProperties.MAX_AGE_5;

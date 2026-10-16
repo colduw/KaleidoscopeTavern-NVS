@@ -84,8 +84,8 @@ public class DrinkBlock extends BottleBlock implements EntityBlock {
         }
 
         // 如果是空手，那么可以尝试取回
-        if (!player.getItemInHand(hand).isEmpty()) {
-            return super.useItemOn(stack, state, level, pos, player, hand, hitResult);
+        if (!player.getActiveItem().isEmpty()) {
+            return InteractionResult.FAIL;
         }
 
         // 尝试给玩家物品
