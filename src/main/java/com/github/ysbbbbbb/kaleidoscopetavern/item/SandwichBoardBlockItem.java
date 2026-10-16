@@ -29,7 +29,6 @@ public class SandwichBoardBlockItem extends BlockItem {
     }
 
     @Override
-    @SuppressWarnings("deprecation")
     public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
         if (this.getBlock() instanceof SandwichBoardBlock sandwichBoardBlock) {
             List<Item> transformItems = sandwichBoardBlock.getTransformItems();

@@ -37,7 +37,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class SofaBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock, IConnectionBlock {
     public static final MapCodec<SofaBlock> CODEC = simpleCodec(SofaBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;

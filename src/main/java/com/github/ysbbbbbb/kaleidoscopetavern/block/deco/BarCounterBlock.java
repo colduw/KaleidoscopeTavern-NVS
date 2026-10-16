@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import org.jetbrains.annotations.Nullable;
 
-@SuppressWarnings("deprecation")
 public class BarCounterBlock extends HorizontalDirectionalBlock implements IConnectionBlock {
     public static final MapCodec<BarCounterBlock> CODEC = simpleCodec(BarCounterBlock::new);
 

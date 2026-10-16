@@ -18,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.GrowingPlantHeadBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -30,8 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.neoforge.common.ItemAbilities;
 
-@SuppressWarnings("deprecation")
-public class WildGrapevineBlock extends GrowingPlantHeadBlock implements BonemealableBlock {
+public class WildGrapevineBlock extends GrowingPlantHeadBlock {
     public static final MapCodec<WildGrapevineBlock> CODEC = simpleCodec(WildGrapevineBlock::new);
     /**
      * 被剪刀修剪过后，无法再随机生长了，直到被重新种植

@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class WildGrapevinePlantBlock extends GrowingPlantBodyBlock implements BonemealableBlock {
+public class WildGrapevinePlantBlock extends GrowingPlantBodyBlock {
     public static final MapCodec<WildGrapevinePlantBlock> CODEC = simpleCodec(WildGrapevinePlantBlock::new);
 
     private static final VoxelShape SHAPE = Block.box(1, 0, 1, 15, 16, 15);

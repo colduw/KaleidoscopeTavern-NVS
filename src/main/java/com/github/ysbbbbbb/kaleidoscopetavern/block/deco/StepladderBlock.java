@@ -31,7 +31,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collections;
 import java.util.List;
 
-@SuppressWarnings("deprecation")
 public class StepladderBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final MapCodec<StepladderBlock> CODEC = simpleCodec(StepladderBlock::new);
 

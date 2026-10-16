@@ -43,7 +43,6 @@ import org.jetbrains.annotations.Nullable;
 
 import static com.github.ysbbbbbb.kaleidoscopetavern.block.plant.ITrellis.*;
 
-@SuppressWarnings("deprecation")
 public class TrellisBlock extends Block implements SimpleWaterloggedBlock, ITrellis {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty WAXED = BooleanProperty.create("waxed");

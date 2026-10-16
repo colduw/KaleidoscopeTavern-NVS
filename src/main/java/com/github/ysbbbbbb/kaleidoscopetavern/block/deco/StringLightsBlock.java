@@ -43,7 +43,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.Objects;
 
-@SuppressWarnings("deprecation")
 public class StringLightsBlock extends HorizontalDirectionalBlock implements SimpleWaterloggedBlock {
     public static final MapCodec<StringLightsBlock> CODEC = simpleCodec(p -> new StringLightsBlock(p, DyeColor.WHITE));
     public static final Map<Item, StringLightsBlock> TRANSFORM_MAP = Maps.newHashMap();

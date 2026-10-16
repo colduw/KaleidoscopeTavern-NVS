@@ -46,7 +46,6 @@ import java.util.function.Supplier;
 import static com.github.ysbbbbbb.kaleidoscopetavern.block.plant.ITrellis.axisHasTrellis;
 import static com.github.ysbbbbbb.kaleidoscopetavern.block.plant.ITrellis.updateType;
 
-@SuppressWarnings("deprecation")
 public class GrapevineTrellisBlock extends Block implements SimpleWaterloggedBlock, ITrellis, BonemealableBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final IntegerProperty AGE = BlockStateProperties.AGE_3;

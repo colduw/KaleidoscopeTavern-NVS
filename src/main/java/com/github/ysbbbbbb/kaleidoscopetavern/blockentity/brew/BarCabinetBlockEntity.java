@@ -38,8 +38,8 @@ public class BarCabinetBlockEntity extends BaseBlockEntity {
     @Override
     protected void saveAdditional(ValueOutput output) {
         super.saveAdditional(output);
-        output.store("left_item", ItemStack.CODEC, this.leftItem);
-        output.store("right_item", ItemStack.CODEC, this.rightItem);
+        output.store("left_item", ItemStack.OPTIONAL_CODEC, this.leftItem);
+        output.store("right_item", ItemStack.OPTIONAL_CODEC, this.rightItem);
         output.store("is_single", Codec.BOOL, this.isSingle);
     }
 

@@ -54,7 +54,7 @@ public class BarrelRecipeCategory implements IRecipeCategory<RecipeHolder<Barrel
 
         int offsetX = 0;
         for (Ingredient input : recipe.ingredients()) {
-            List<ItemStack> list = input.items()
+            List<ItemStack> list = input.getValues().stream()
                     .map(holderItem -> new ItemStack(holderItem, 16))
                     .toList();
             builder.addSlot(RecipeIngredientRole.INPUT, 30 + offsetX, 9)

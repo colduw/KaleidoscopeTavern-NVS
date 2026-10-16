@@ -41,7 +41,6 @@ import java.util.function.Supplier;
 
 import static com.github.ysbbbbbb.kaleidoscopetavern.config.GeneralConfig.PRESSING_TUB_DROP_CONTENTS_ON_NON_JUICEABLE;
 
-@SuppressWarnings("deprecation")
 public class PressingTubBlockEntity extends BaseBlockEntity implements IPressingTub {
     private final RecipeManager.CachedCheck<SingleRecipeInput, PressingTubRecipe> quickCheck = RecipeManager.createCheck(ModRecipes.PRESSING_TUB_RECIPE.get());
 
