@@ -2,6 +2,7 @@ package com.github.ysbbbbbb.kaleidoscopetavern.item;
 
 import com.github.ysbbbbbb.kaleidoscopetavern.api.blockentity.IBarrel;
 import com.github.ysbbbbbb.kaleidoscopetavern.block.brew.DrinkBlock;
+import com.github.ysbbbbbb.kaleidoscopetavern.blockentity.brew.DrinkBlockEntity;
 import com.github.ysbbbbbb.kaleidoscopetavern.datamap.DrinkEffectResolver;
 import com.github.ysbbbbbb.kaleidoscopetavern.init.ModItems;
 import net.minecraft.core.BlockPos;
@@ -57,7 +58,17 @@ public class DrinkBlockItem extends BottleBlockItem implements IHasContainer {
             if (player != null && tryIncreaseCount(self, state, level, pos, stack, player)) {
                 return InteractionResult.SUCCESS;
             }
-            return this.place(new BlockPlaceContext(context));
+
+            BlockPlaceContext context2 = new BlockPlaceContext(context);
+            InteractionResult result = this.place(context2);
+
+            if (result.consumesAction()) {
+                if (level.getBlockEntity(context2.getClickedPos()) instanceof DrinkBlockEntity be && be.addItem(stack)) {
+                    be.refresh();
+                }
+            }
+
+            return result;
         }
 
         // 否则尝试喝下去
